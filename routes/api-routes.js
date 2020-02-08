@@ -16,32 +16,26 @@ router.post("/api/workouts", ({ body }, res) => {
 router.put("/api/workouts/:id", ({ body, params }, res) => {
   Workout.findByIdAndUpdate(
     params.id,
-    { $push: { exercises: body } },
+    {
+      $push: {
+        exercises: body
+      }
+    },
     {
       new: true,
       runValidators: true
+    },
+    function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result);
+      }
     }
   ).catch(err => {
     res.json(err);
   });
 });
-
-// router.post("/api/workouts/:id", ({ body }, res) => {
-//   db.Workout.create(body)
-//     .then(({ _id }) =>
-//       db.Workout.findOneAndUpdate(
-//         {},
-//         { $push: { workout: _id } },
-//         { new: true }
-//       )
-//     )
-//     .then(dbWorkout => {
-//       res.json(dbWorkout);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
 
 // GET
 router.get("/api/workouts", (req, res) => {
@@ -55,7 +49,7 @@ router.get("/api/workouts", (req, res) => {
 });
 
 // GET
-router.get("api/workouts/range", ({ body }, res) => {
+router.get("/api/workouts/range", ({ body }, res) => {
   Workout.find({})
     .limit(10)
     .then(dbWorkout => {
@@ -67,7 +61,7 @@ router.get("api/workouts/range", ({ body }, res) => {
 });
 
 // DELETE
-router.delete("api/workouts", ({ body }, res) => {
+router.delete("/api/workouts", ({ body }, res) => {
   Workout.findByIdAndDelete(body.id)
     .then(() => {
       res.json(true);

@@ -4,10 +4,17 @@ const express = require("express");
 const path = require("path");
 const apiRoutes = require("./routes/api-routes.js");
 const htmlRoutes = require("./routes/html-routes.js");
+const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
+
+mongoose.connect("mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true
+});
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
