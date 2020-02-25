@@ -1,6 +1,6 @@
 # Workout Tracker
 
-A NoSQL Workout Tracker application in node.js that helps a user reach their fitness goals quicker when they track their workout progress.
+A NoSQL Workout Tracker application in node.js that helps a user reach their fitness goals quicker when they track their workout progress. The deployed app can be viewed on https://fitness-stats-tracker.herokuapp.com/?id=5e459dd65a14cf0017255edc.
 
 ## Software used
 
